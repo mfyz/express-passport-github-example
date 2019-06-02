@@ -4,4 +4,5 @@ block content
 	ul
 		each repository in repositories
 			li
-				a(href= repository.link target='_blank')= respository.name
+				span= respository.description
+				a(href= repository.url target='_blank')= repository.url

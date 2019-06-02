@@ -147,8 +147,8 @@ app.get('/repositories', authRequired, (req, res) => {
 		headers: { "Authorization": `token ${req.user.githubtoken}` }
 	})
 		.then((response) => {
-			console.log('github api call respnse', response)
-			res.render('respositories', { respositories: [] })
+			// console.log('github api call respnse', response)
+			res.render('respositories', { respositories: response.data })
 		})
 		.catch((err) => {
 			console.log('github api call returned with err', err)
