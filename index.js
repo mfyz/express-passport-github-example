@@ -148,7 +148,8 @@ app.get('/repositories', authRequired, (req, res) => {
 	})
 		.then((response) => {
 			// console.log('github api call respnse', response)
-			res.render('respositories', { respositories: response.data })
+			res.json(response)
+			// res.render('respositories', { respositories: response.data })
 		})
 		.catch((err) => {
 			console.log('github api call returned with err', err)
