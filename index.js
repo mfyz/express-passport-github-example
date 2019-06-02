@@ -142,7 +142,6 @@ app.get('/member', authRequired, (req, res) => {
 
 app.get('/repositories', authRequired, (req, res) => {
 	if (!req.user.githubid) return res.render('error', { message: 'You need github account linked!' })
-	res.send('will call the api and get repositories')
 	axios({
 		url: 'https://api.github.com/gists',
 		headers: { "Authorization": `token ${req.user.githubtoken}` }
