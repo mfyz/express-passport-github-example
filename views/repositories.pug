@@ -1,0 +1,8 @@
+extends layout
+block content
+	h1 My repositories
+	ul
+		each rep in repositories
+			li
+				span= rep.description
+				a(href= rep.html_url target='_blank')= rep.html_url

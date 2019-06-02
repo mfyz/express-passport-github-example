@@ -1,8 +1,0 @@
-extends layout
-block content
-	h1 My repositories
-	ul
-		each repository in repositories
-			li
-				span= respository.description
-				a(href= repository.html_url target='_blank')= repository.html_url
