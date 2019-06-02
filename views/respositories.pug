@@ -1,0 +1,7 @@
+extends layout
+block content
+	h1 My repositories
+	ul
+		each repository in repositories
+			li
+				a(href= repository.link target='_blank')= respository.name
