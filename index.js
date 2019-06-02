@@ -8,6 +8,7 @@ const helmet = require('helmet')
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const GithubStrategy = require('passport-github').Strategy
+const axios = require('axios')
 const dbUtil = require('./dbUtil')
 
 const PORT = process.env.PORT || 4012
@@ -142,7 +143,18 @@ app.get('/member', authRequired, (req, res) => {
 app.get('/repositories', authRequired, (req, res) => {
 	if (!req.user.githubid) return res.render('error', { message: 'You need github account linked!' })
 	res.send('will call the api and get repositories')
-	// res.render('respositories', { respositories: [] })
+	axios({
+		url: 'https://api.github.com/gists',
+		headers: { "Authorization": `token ${req.user.githubtoken}` }
+	})
+		.then((response) => {
+			console.log('github api call respnse', response)
+			res.render('respositories', { respositories: [] })
+		})
+		.catch((err) => {
+			console.log('github api call returned with err', err)
+			res.render('error', { message: err.data })
+		})
 })
 
 app.all('/login', (req, res, next) => {
