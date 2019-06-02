@@ -1,7 +1,7 @@
 # Node Express Passport.js Github Example
 
 
-### Set up posgres
+### Set up postgres
 
 1. heroku addons:create heroku-postgresql:hobby-dev
 2. heroku config

@@ -140,14 +140,14 @@ app.get('/member', authRequired, (req, res) => {
 	res.render('member')
 })
 
-app.get('/repositories', authRequired, (req, res) => {
+app.get('/gists', authRequired, (req, res) => {
 	if (!req.user.githubid) return res.render('error', { message: 'You need github account linked!' })
 	axios({
 		url: 'https://api.github.com/gists',
 		headers: { "Authorization": `token ${req.user.githubtoken}` }
 	})
 		.then((response) => {
-			res.render('repositories', { repositories: response.data })
+			res.render('gists', { gists: response.data })
 		})
 		.catch((err) => {
 			console.log('github api call returned with err', err)
